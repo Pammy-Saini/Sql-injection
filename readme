@@ -1,1 +1,213 @@
+# SQL Injection Demo (Secure vs Vulnerable)
 
+This project demonstrates how **SQL Injection** works and how it can be prevented using secure coding practices.
+
+It contains two login methods:
+
+-  Vulnerable Login (unsafe query building)
+-  Secure Login (prepared statement simulation)
+
+The project is built using:
+
+- HTML
+- CSS
+- JavaScript
+
+---
+
+##  Project Objective
+
+The main objective of this project is to understand:
+
+- What SQL Injection is
+- How attackers bypass authentication
+- Why dynamic query concatenation is dangerous
+- How prepared statements prevent SQL Injection
+
+---
+
+##  Project Preview
+
+Features available in UI:
+
+- Username input  
+- Password input  
+- Vulnerable Login button  
+- Secure Login button  
+- Query display  
+- Login result message  
+
+---
+
+##  Screenshots
+
+### Main Interface
+Shows the SQL Injection demo login panel with both vulnerable and secure login options.
+
+<img width="100%" alt="Main Interface" src="screenshots/main-interface.png">
+
+---
+
+### Vulnerable Login Demo
+Demonstrates how unsafe query concatenation can allow login bypass.
+
+<img width="100%" alt="Vulnerable Login" src="screenshots/vulnerable-login.png">
+
+---
+
+### Secure Login Demo
+Shows secure login using prepared statement simulation.
+
+<img width="100%" alt="Secure Login" src="screenshots/secure-login.png">
+
+---
+
+##  How It Works
+
+### 1. Vulnerable Login
+
+This function creates SQL query using string concatenation.
+
+Example:
+
+```sql
+SELECT * FROM users WHERE username='admin' AND password='1234'
+```
+
+Vulnerable code:
+
+```javascript
+let query = "SELECT * FROM users WHERE username='" 
+            + username + 
+            "' AND password='" + password + "'";
+```
+
+### Risk
+User malicious input de sakta hai:
+
+```sql
+admin' --
+```
+
+Isse query manipulate ho sakti hai aur authentication bypass ho sakta hai.
+
+---
+
+### 2. Secure Login
+
+Secure version user input directly query me inject nahi karta.
+
+Example:
+
+```sql
+SELECT * FROM users WHERE username=? AND password=?
+```
+
+Benefits:
+
+- Input treated as data  
+- SQL code execute nahi hota  
+- Injection attack fail ho jata hai  
+
+---
+
+##  SQL Injection Example
+
+Malicious input:
+
+```sql
+' OR '1'='1
+```
+
+Unsafe query:
+
+```sql
+SELECT * FROM users 
+WHERE username='' OR '1'='1' 
+AND password=''
+```
+
+### Result
+
+- Condition always true  
+- Login bypass possible  
+
+---
+
+##  Prevention Techniques
+
+To prevent SQL Injection:
+
+- Use Prepared Statements  
+- Use Parameterized Queries  
+- Validate User Input  
+- Escape Special Characters  
+- Apply Least Privilege Database Access  
+
+---
+
+##  Project Structure
+
+```bash
+sql-injection-demo/
+│
+├── screenshots/
+│   ├── main-interface.png
+│   ├── vulnerable-login.png
+│   └── secure-login.png
+│
+├── index.html
+├── style.css
+├── index.js
+└── README.md
+```
+
+---
+
+##  Run Project
+
+### Method 1: Browser
+
+Simply open:
+
+```bash
+index.html
+```
+
+### Method 2: Online Compiler
+
+Run on:
+
+- CodeChef HTML Compiler  
+- CodePen  
+- JSFiddle  
+
+---
+
+##  Learning Outcome
+
+After completing this project, you will understand:
+
+✔ SQL Injection basics  
+✔ Authentication bypass  
+✔ Vulnerable coding patterns  
+✔ Secure coding practices  
+
+---
+
+## Author
+
+**Pammy Saini**  
+
+Cyber Security / Ethical Hacking Learner
+
+---
+
+##  Future Improvements
+
+Possible upgrades:
+
+- Connect with real database  
+- Add backend (Python / Flask / Node.js)  
+- Add login logs  
+- Add attack simulation dashboard  
